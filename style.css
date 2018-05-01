@@ -1,0 +1,27 @@
+.number {
+    transition: all 1s;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 25px;
+
+    background: #1e87f0;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 5px;
+    text-align: center;
+    width: 1.6em;
+  }
+
+  .numbers-enter {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+#app {
+    background-color: mintcream
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/css/uikit.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intro.js@2.8.0-alpha.1/minified/introjs.min.css">
+  <title>Визуализация сортировки пузырьком</title>
+</head>
+
+<body>
+  <div class="uk-container">
+    <div id="app" class="uk-card uk-card-default uk-card-body uk-margin">
+      <h3 class="uk-card-title" class="uk-container">Визуализация сортировки пузырьком</h3>
+      <div uk-grid>
+        <div>
+          <button v-on:click="runIntro" class="uk-button uk-button-secondary" data-intro='Добро пожаловать! Пожалуйста, посмотрите инструкцию, как пользоваться этой страницей.' data-step="1">Инструкции</button>
+        </div>
+        <div class="uk-width-1-1@m" data-intro='Для начала, выберите, сколько чисел нужно сгенерировать. По умолчанию, их будет 100.' data-step="2">
+          <label>Выберите, сколько чисел нужно сгенерировать:</label>
+          <select class="uk-select" :disabled="isSortingInProgress" v-on:change="createNumbers" v-model.number="countOfNumbersTextBox">
+            <option>10</option>
+            <option>50</option>
+            <option>100</option>
+          </select>
+        </div>
+        <div>
+          <button v-on:click="shuffleNumbers" :disabled="isSortingInProgress" class="uk-button uk-button-primary" title="Перемешать числа" data-intro='Числа генерируются по порядку, поэтому нужно воспользоваться вот этой кнопкой, чтобы внести немного хаоса.' data-step="3">
+            <i class="fa fa-random"></i>
+          </button>
+        </div>
+        <div>
+          <button v-on:click="startSort" :disabled="isSortingInProgress" class="uk-button uk-button-primary" title="Запустить сортировку" data-intro='И запустите сортировку!' data-step="4">
+            <i class="fa fa-play"></i>
+          </button>
+        </div>
+        <div>
+          <button v-on:click="stopSort" :disabled="!isSortingInProgress" class="uk-button uk-button-primary" title="Остановить сортировку" data-intro='В любой момент её можно остановить вот этой кнопкой.' data-step="6">
+            <i class="fa fa-stop"></i>
+          </button>
+        </div>
+        <div class="uk-width-1-1@m" data-intro='Ещё можно регулировать её скорость вот этим слайдером.' data-step="7">
+          <label>Скорость сортировки:</label>
+          <input class="uk-range" v-model.number="sortingSpeed" type="range" min="10" max="1000" step="10" style="direction:rtl">
+        </div>
+        <transition-group name="numbers" tag="p" data-intro='Анимированная сортировка будет проходить тут.' data-step="5">
+          <span v-for="number in numbers" v-bind:key="number" class="number">
+            {{ number }}
+          </span>
+        </transition-group>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/intro.js@2.8.0-alpha.1/minified/intro.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
